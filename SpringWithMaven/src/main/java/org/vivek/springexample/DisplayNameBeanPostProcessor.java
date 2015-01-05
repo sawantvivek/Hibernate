@@ -5,7 +5,7 @@ import org.springframework.beans.factory.config.BeanPostProcessor;
 
 public class DisplayNameBeanPostProcessor implements BeanPostProcessor {
 
-	@Override
+	
 	public Object postProcessAfterInitialization(Object bean, String beanName)
 			throws BeansException {
 		// TODO Auto-generated method stub
@@ -13,7 +13,6 @@ public class DisplayNameBeanPostProcessor implements BeanPostProcessor {
 		return bean;
 	}
 
-	@Override
 	public Object postProcessBeforeInitialization(Object bean, String beanName)
 			throws BeansException {
 		System.out

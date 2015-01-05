@@ -42,12 +42,11 @@ public class Triangle implements InitializingBean, DisposableBean, Shape{
 		
 	}
 
-	@Override
+	
 	public void destroy() throws Exception {
 			System.out.println("Destroy Method");
 	}
 
-	@Override
 	public void afterPropertiesSet() throws Exception {
 		System.err.println("init method");
 	}
