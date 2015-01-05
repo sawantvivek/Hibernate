@@ -21,5 +21,6 @@
 	<bean name="shapeService" class="org.vivek.springexample.service.ShapeService"
 		autowire="byName" />
 
+	<bean id="loggingAspect" class="org.vivek.springexample.aspect.LoggingAspect" />
 
 </beans>
