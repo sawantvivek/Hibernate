@@ -13,5 +13,7 @@ public class JdbcMain {
 		JdbcDAOImpl impl = (JdbcDAOImpl) ctx.getBean("jdbcDAOImpl");
 		org.vivek.springexample.model.Circle circle = impl.getCircle(1);
 		System.out.println(circle.getName());
+		
+		System.out.println(impl.getcountCircle());
 	}
 }

@@ -8,22 +8,25 @@ import java.sql.SQLException;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import org.vivek.springexample.model.Circle;
 
 @Component
 public class JdbcDAOImpl {
 	
-	@Autowired
+	
 	private DataSource dataSource;
 	
+	private JdbcTemplate jdbcTemplate;
 
 	public DataSource getDataSource() {
 		return dataSource;
 	}
 
-
+	@Autowired
 	public void setDataSource(DataSource dataSource) {
+		this.jdbcTemplate = new JdbcTemplate(dataSource);
 		this.dataSource = dataSource;
 	}
 
@@ -65,4 +68,12 @@ public class JdbcDAOImpl {
 		return circle;
 	}
 	
+	
+	public int getcountCircle(){
+		String sql = "SELECT COUNT(*) FROM CIRCLE";
+		return jdbcTemplate.queryForObject(sql, Integer.class);
+		
+		
+		
+	}
 }
