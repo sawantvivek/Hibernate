@@ -71,9 +71,11 @@ public class JdbcDAOImpl {
 	
 	public int getcountCircle(){
 		String sql = "SELECT COUNT(*) FROM CIRCLE";
-		return jdbcTemplate.queryForObject(sql, Integer.class);
-		
-		
-		
+		return jdbcTemplate.queryForObject(sql, Integer.class);	
+	}
+	
+	public String getNames(int circleId){
+		String sql = "SELECT NAME FROM CIRCLE where id = ?";
+		return jdbcTemplate.queryForObject(sql, new Object[]{circleId}, String.class);	
 	}
 }

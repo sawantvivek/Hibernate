@@ -15,5 +15,6 @@ public class JdbcMain {
 		System.out.println(circle.getName());
 		
 		System.out.println(impl.getcountCircle());
+		System.out.println(impl.getNames(1));
 	}
 }
