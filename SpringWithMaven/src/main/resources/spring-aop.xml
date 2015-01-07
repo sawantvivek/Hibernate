@@ -10,17 +10,14 @@
 
 	<aop:aspectj-autoproxy />
 
-	<bean name="triangle" class="org.vivek.springexample.model.Triangle">
-		<property name="name" value="Triangle Name"></property>
+
+	<context:component-scan base-package="org.vivek.*" />
+
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
+		<property name="url" value="jdbc:oracle:thin:@localhost:1521:XE" />
+		<property name="username" value="SPRING" />
+		<property name="password" value="SPRING" />
 	</bean>
-
-	<bean name="circle" class="org.vivek.springexample.model.Circle">
-		<property name="name" value="Circle Name"></property>
-	</bean>
-
-	<bean name="shapeService" class="org.vivek.springexample.service.ShapeService"
-		autowire="byName" />
-
-	<bean id="loggingAspect" class="org.vivek.springexample.aspect.LoggingAspect" />
-
 </beans>

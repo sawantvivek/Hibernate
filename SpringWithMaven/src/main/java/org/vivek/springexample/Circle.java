@@ -45,8 +45,7 @@ public class Circle implements Shape, ApplicationEventPublisherAware {
 		return center;
 	}
 
-	@Autowired
-	@Qualifier(value="CircleRelated")
+	@Resource(name="pointB")
 	public void setCenter(Point center) {
 		this.center = center;
 	}
