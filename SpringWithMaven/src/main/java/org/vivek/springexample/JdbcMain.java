@@ -2,7 +2,7 @@ package org.vivek.springexample;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.vivek.springexample.dao.SimpleJdbcDAOImpl;
+import org.vivek.springexample.dao.HibernateImpl;
 import org.vivek.springexample.model.Circle;
 public class JdbcMain {
 
@@ -10,7 +10,7 @@ public class JdbcMain {
 
 		ApplicationContext ctx = new ClassPathXmlApplicationContext(
 				"spring-aop.xml");
-		SimpleJdbcDAOImpl impl = (SimpleJdbcDAOImpl) ctx.getBean("simpleJdbcDAOImpl");
+		HibernateImpl impl = (HibernateImpl) ctx.getBean("hibernateImpl");
 	//	org.vivek.springexample.model.Circle circle = impl.getCircle(1);
 //		System.out.println(circle.getName());
 //		
@@ -20,6 +20,6 @@ public class JdbcMain {
 			System.out.println(c.getName());
 		}*/
 		
-		System.out.println("circle count :"+impl.getcountCircle());
+		impl.insertCircle(new Circle("HARAMI-2"));
 	}
 }

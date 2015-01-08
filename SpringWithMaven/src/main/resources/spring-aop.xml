@@ -24,4 +24,19 @@
 		<property name="username" value="SPRING" />
 		<property name="password" value="SPRING" />
 	</bean>
+	
+	
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+	<property name="dataSource" ref="dataSource"/>
+	<property name="packagesToScan" value="org.vivek.springexample.model" />
+	<property name="hibernateProperties">
+		<props>
+			<prop key="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</prop>
+			<prop key="hibernate.show_sql">true</prop>
+			<prop key="hbm2dll.auto">update</prop>
+		</props>
+	</property>
+	</bean>
+	
+	
 </beans>

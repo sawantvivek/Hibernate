@@ -1,10 +1,12 @@
 package org.vivek.springexample.model;
 
-import org.springframework.stereotype.Service;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
-@Service
+@Entity
 public class Circle {
 
+	@Id
 	private int id;
 	private String name;
 
@@ -15,7 +17,6 @@ public class Circle {
 	public void setId(int id) {
 		this.id = id;
 	}
-
 
 	public String getName() {
 		return name;
@@ -28,8 +29,13 @@ public class Circle {
 	public Circle() {
 		// TODO Auto-generated constructor stub
 	}
+
 	public Circle(int id, String name) {
 		setId(id);
 		setName(name);
+	}
+
+	public Circle(String string) {
+		setName(string);
 	}
 }
