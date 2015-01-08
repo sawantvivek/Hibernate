@@ -4,11 +4,15 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Component;
 import org.vivek.springexample.model.Circle;
 
@@ -18,7 +22,7 @@ public class JdbcDAOImpl {
 	
 	private DataSource dataSource;
 	
-	private JdbcTemplate jdbcTemplate;
+	private NamedParameterJdbcTemplate jdbcTemplate;
 
 	public DataSource getDataSource() {
 		return dataSource;
@@ -26,7 +30,7 @@ public class JdbcDAOImpl {
 
 	@Autowired
 	public void setDataSource(DataSource dataSource) {
-		this.jdbcTemplate = new JdbcTemplate(dataSource);
+		this.jdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
 		this.dataSource = dataSource;
 	}
 
@@ -69,7 +73,7 @@ public class JdbcDAOImpl {
 	}
 	
 	
-	public int getcountCircle(){
+	/*public int getcountCircle(){
 		String sql = "SELECT COUNT(*) FROM CIRCLE";
 		return jdbcTemplate.queryForObject(sql, Integer.class);	
 	}
@@ -78,4 +82,42 @@ public class JdbcDAOImpl {
 		String sql = "SELECT NAME FROM CIRCLE where id = ?";
 		return jdbcTemplate.queryForObject(sql, new Object[]{circleId}, String.class);	
 	}
+	*/
+	//		SqlParameterSource source = new MapSqlParameterSource("ID", "2").addValue("NAME", "DR. BABA AMTE");
+
+	
+	
+	public void insertNames(Circle circle){
+		String sql = "INSERT INTO CIRCLE (ID, NAME) VALUES (:ID, :NAME)";
+		SqlParameterSource source = new MapSqlParameterSource("ID", circle.getId()).addValue("NAME", circle.getName());
+		jdbcTemplate.update(sql, source);
+		
+	}
+	
+	
+	public List<Circle> getDrName(){
+		String sql = "SELECT * FROM CIRCLE";
+		return jdbcTemplate.query(sql, new CircleRowMapper());	
+	}
+	
+
+	private static  final  class CircleRowMapper implements RowMapper<Circle> {
+		
+	public Circle mapRow(ResultSet resultSet, int rowNo)
+				throws SQLException {
+				
+					Circle circle = new Circle();
+					circle.setId(resultSet.getInt("ID"));
+					circle.setName(resultSet.getString("NAME"));
+
+				
+				
+				
+			return circle;
+		}
+
+	}
+	
 }
+
+
