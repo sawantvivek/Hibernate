@@ -1,10 +1,8 @@
 package org.vivek.springexample;
 
-import java.util.Iterator;
-
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.vivek.springexample.dao.JdbcDAOImpl;
+import org.vivek.springexample.dao.SimpleJdbcDAOImpl;
 import org.vivek.springexample.model.Circle;
 public class JdbcMain {
 
@@ -12,8 +10,8 @@ public class JdbcMain {
 
 		ApplicationContext ctx = new ClassPathXmlApplicationContext(
 				"spring-aop.xml");
-		JdbcDAOImpl impl = (JdbcDAOImpl) ctx.getBean("jdbcDAOImpl");
-		org.vivek.springexample.model.Circle circle = impl.getCircle(1);
+		SimpleJdbcDAOImpl impl = (SimpleJdbcDAOImpl) ctx.getBean("simpleJdbcDAOImpl");
+	//	org.vivek.springexample.model.Circle circle = impl.getCircle(1);
 //		System.out.println(circle.getName());
 //		
 //		System.out.println(impl.getcountCircle());
@@ -22,6 +20,6 @@ public class JdbcMain {
 			System.out.println(c.getName());
 		}*/
 		
-		impl.insertNames(new Circle(5, "DR. BABA AMTE"));
+		System.out.println("circle count :"+impl.getcountCircle());
 	}
 }
